@@ -20,7 +20,7 @@ class MoviesList extends Component {
                     <div className="justify-content-between">
                     <p className="card-text">
                     <span className="float-left">{movie.title}</span> 
-                    <button type="button" className="btn btn-outline-dark btn-sm float-right">{movie.release_date}</button>
+                    <button type="button" className="btn btn-outline-secondary btn-sm float-right">{movie.release_date}</button>
                     </p>
                     </div>                    
                     <div><span>{movie.genres}</span></div>                    

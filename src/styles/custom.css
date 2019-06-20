@@ -1,4 +1,62 @@
+body {
+    color: #fff;
+}
+
 .jumbotron {
     background-image: url("../assest/netflix-header.jpg");
     background-size: cover;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.footer {
+    background: #9ca4ab;
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #F65261;
+    padding: .5rem;
+}
+
+.searchBtn {
+    background: #F65261;
+    color: #fff;
+    border-color: #F65261;
+}
+
+.btn-secondary-selected {
+    background: #F65261;
+    color: #fff;
+    border-color: #F65261;
+}
+
+.btn-sort_toggle {
+    background: lightgrey;
+    color: #fff;
+    border-color: lightgrey;
+}
+
+.btn-sort_toggle:focus {
+    background: #F65261;
+    color: #fff;
+    border-color: #F65261;
+}
+
+.moviesubheadingSection {
+    background: #555;
+    color: #fff;
+    padding: 1rem;
+}
+
+.mainContent {
+    background: #232323;
+    margin: 0;
+}
+
+.card-body {
+    background: #232323;
+}
+
+.btn-outline-secondary {
+    color: #fff;
 }
