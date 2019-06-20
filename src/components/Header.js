@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MoviesList from './movies/MoviesList'
+import MoviesList from './MoviesList'
 import MoviesData from '../data/moviesList'
 
 class Header extends Component {
