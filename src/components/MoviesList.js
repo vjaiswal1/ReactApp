@@ -13,7 +13,7 @@ class MoviesList extends Component {
         const propsData = this.props.data;        
         return propsData.map(movie => {
             return (
-                <div className="card col-md-3 mx-3 my-3 px-0">
+                <div className="card col-md-3 mx-3 my-3 px-0" key={movie.id}>
                     <img className="card-img-top" src={movie.poster_path} alt={movie.title} />
                     <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
