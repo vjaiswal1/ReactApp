@@ -1,17 +1,13 @@
 import React, {Component} from 'react'
 
 class MoviesList extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     componentDidMount(){
         this.props.sortTitles();
     }
 
     render() {
-        const propsData = this.props.data;        
-        return propsData.map(movie => {
+        const {data} = this.props;        
+        return data.map(movie => {
             return (
                 <div className="card col-md-3 mx-3 my-3 px-0" key={movie.id}>
                     <img className="card-img-top" src={movie.poster_path} alt={movie.title} />
