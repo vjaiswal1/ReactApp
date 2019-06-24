@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import MoviesList from './MoviesList'
 import MoviesData from '../data/moviesList'
-import Jumbotron from './Jumbotron'
-import ErrorBoundary from './common/ErrorBoundary'
+import Search from './Search'
+import SortSearch from './SortSearch'
+import SortByCategory from './SortByCategory'
 
 class Header extends Component {
     constructor(props) {
@@ -92,36 +93,17 @@ class Header extends Component {
     render() {  
         const data = this.state.results;
         return (
-            <ErrorBoundary>
             <div>
-            <div className="jumbotron">
-                <h1 className="display-4">Find your Movie</h1>
-                <form className="navbar-form navbar-left" role="search">
-                    <div className="input-group mb-3">
-                    <input type="text" className="form-control" placeholder="Enter movie's name" onChange={this.onkeyHandle} />
-                    <div className="input-group-append">
-                        <button className="btn searchBtn" type="button" onClick={this.resultsQuery}>Search</button>
-                    </div>
-                    </div>
-                </form>  
-                <div className="btn-group" role="group" aria-label="Basic example">
-                SEARCH BY 
-                    <button type="button" className="btn btn-sort_toggle" onClick={this.sortTitles}>Title</button>
-                    <button type="button" className="btn btn-sort_toggle" onClick={this.sortGenres}>Gengre</button>
-                </div>          
+                <div className="jumbotron">
+                    <h1 className="display-4">Find your Movie</h1>
+                    <Search onkeyHandle={this.onkeyHandle} resultsQuery={this.resultsQuery}/>
+                    <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
+                </div>
+                <SortByCategory sortRelease={this.sortRelease} sortRating={this.sortRating} />              
+                <div className="row justify-content-center mainContent">
+                    <MoviesList data={data} sortTitles={this.sortTitles} /> 
+                </div>                         
             </div>
-                <div className="clearfix moviesubheadingSection"> 
-                    <div className="float-left float-md-left">Count: </div>
-                    <div className="float-right float-md-right">SORT BY   
-                          
-                    <button type="button" className="btn btn-sm btn-sort_toggle ml-1" onClick={this.sortRelease}>RELEASE DATE</button>
-                    <button type="button" className="btn btn-sm btn-sort_toggle ml-1" onClick={this.sortRating}>SORTING</button></div>
-                </div>                
-                    <div className="row justify-content-center mainContent">
-                        <MoviesList data={data} sortTitles={this.sortTitles} /> 
-                    </div>                         
-            </div>
-            </ErrorBoundary>
         );
     }
 }
