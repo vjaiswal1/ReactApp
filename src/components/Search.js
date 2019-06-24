@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 function Search (props) {
     return ( 
         <form className="navbar-form navbar-left" role="search">
@@ -10,8 +8,8 @@ function Search (props) {
                 <button className="btn searchBtn" type="button" onClick={props.resultsQuery}>Search</button>
             </div>
         </div>
-        </form>)
-
+        </form>
+    )
 }
 
 export default Search;

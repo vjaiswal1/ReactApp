@@ -99,7 +99,7 @@ class Header extends Component {
                     <Search onkeyHandle={this.onkeyHandle} resultsQuery={this.resultsQuery}/>
                     <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
                 </div>
-                <SortByCategory sortRelease={this.sortRelease} sortRating={this.sortRating} />              
+                <SortByCategory count={data.length} sortRelease={this.sortRelease} sortRating={this.sortRating} />              
                 <div className="row justify-content-center mainContent">
                     <MoviesList data={data} sortTitles={this.sortTitles} /> 
                 </div>                         
