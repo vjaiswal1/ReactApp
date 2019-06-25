@@ -95,7 +95,10 @@ class Header extends Component {
         return (
             <div>
                 <div className="jumbotron">
-                    <h1 className="display-4">Find your Movie</h1>
+                    <h4 className="mainHeading">
+                        <strong>netflix</strong>roulette
+                    </h4>
+                    <h1 className="display-4 searchMovies">Find your Movie</h1>
                     <Search onKeyHandle={this.onKeyHandle} resultsQuery={this.resultsQuery}/>
                     <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
                 </div>
