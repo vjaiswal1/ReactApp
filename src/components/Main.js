@@ -1,11 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Header from './Header'
-class Main extends Component {
-    render() {
-        return (            
-            <Header />
-        );
-    }
-}
-
+const Main = () => <Header />
 export default Main;
