@@ -1,13 +1,6 @@
 import React from 'react'
 
-const NotFound = () => {
-    return <NoContent />;
-  };
-  
-const NoContent = () => {
-    const data = 'No data found!';
-  
-    return <h1>{data}</h1>;
-  };
+const NoContent = ({ data }) => <h1>{ data }</h1>
+const NotFound = () => <NoContent data={ data } />
 
 export default NotFound;

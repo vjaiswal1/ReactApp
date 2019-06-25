@@ -16,7 +16,7 @@ class Header extends Component {
         };
     }
 
-    onkeyHandle =(e) => {
+    onKeyHandle =(e) => {
         let inputVal = "";
         if (e.target.value !== '') {
             inputVal = e.target.value;
@@ -96,7 +96,7 @@ class Header extends Component {
             <div>
                 <div className="jumbotron">
                     <h1 className="display-4">Find your Movie</h1>
-                    <Search onkeyHandle={this.onkeyHandle} resultsQuery={this.resultsQuery}/>
+                    <Search onKeyHandle={this.onKeyHandle} resultsQuery={this.resultsQuery}/>
                     <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
                 </div>
                 <SortByCategory count={data.length} sortRelease={this.sortRelease} sortRating={this.sortRating} />              
