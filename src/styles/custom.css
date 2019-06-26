@@ -44,6 +44,10 @@ body {
     border-color: #F65261;
 }
 
+.detailedMovie_Text {
+    color: #F65261;
+}
+
 .searchMovies {
     position: relative;
     color: #fff;
@@ -88,4 +92,8 @@ body {
 
 .movieGenres {
     font-size: .75rem;
+}
+
+.card-img-top {
+    cursor: pointer;
 }

@@ -25,7 +25,7 @@ class Header extends Component {
             inputs: inputVal
         })
     }
-
+    
     resultsQuery = () => {
         const currentMovieList = this.state.updatedMovieList;
         let filteredItem = this.state.inputs;
@@ -103,12 +103,9 @@ class Header extends Component {
                     <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
                 </div>
                 <SortByCategory count={data.length} sortRelease={this.sortRelease} sortRating={this.sortRating} />              
-                <div className="row justify-content-center mainContent">
-                    <MoviesList data={data} sortTitles={this.sortTitles} /> 
-                </div>                         
+                <MoviesList data={data} sortTitles={this.sortTitles} />                        
             </div>
         );
     }
 }
-
 export default Header;
