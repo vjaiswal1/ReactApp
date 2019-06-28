@@ -12,7 +12,11 @@ class Header extends Component {
         this.state = {
             results: this.MoviesData,
             updatedMovieList: this.MoviesData,
-            inputs: ""
+            inputs: "",
+            titleActive:true,
+            genresActive:false,
+            releaseActive:false,
+            ratingActive:true
         };
     }
 
@@ -35,16 +39,15 @@ class Header extends Component {
                 filteredItem = filteredItem.toLowerCase();
                 return movie.title.toLowerCase().includes(filteredItem);
             })
-
         } else {
-            movieList = this.MoviesData.data;
+            movieList = this.MoviesData;
         }
         this.setState({
-            results: movieList
+            results: movieList,
+            toggleActive:true
         });
     }
 
-    //Sorting
     sortGenres = () => {
         const movieGenres = this.state.results
         let sortResult = movieGenres.sort((a, b) => {
@@ -55,7 +58,9 @@ class Header extends Component {
             }
         })
         this.setState({
-            results: sortResult
+            results: sortResult,
+            genresActive:true,
+            titleActive:false
         })
     }
     sortTitles = () => {
@@ -68,7 +73,9 @@ class Header extends Component {
             }
         })
         this.setState({
-            results: sortResult
+            results: sortResult,
+            titleActive:true,
+            genresActive:false
         })
     }
 
@@ -78,7 +85,9 @@ class Header extends Component {
             return new Date(b.release_date) - new Date(a.release_date);
         })
         this.setState({
-            results: sortResult
+            results: sortResult,
+            releaseActive:true,
+            ratingActive:false
         })
     }
     sortRating = () => {
@@ -87,11 +96,18 @@ class Header extends Component {
             return b.vote_count - a.vote_count
         })
         this.setState({
-            results: sortResult
+            results: sortResult,
+            releaseActive:false,
+            ratingActive:true
         })
     }
+    componentDidMount(){
+        this.sortRating();
+    }
+
     render() {  
         const data = this.state.results;
+        
         return (
             <div>
                 <div className="jumbotron">
@@ -100,9 +116,9 @@ class Header extends Component {
                     </h4>
                     <h1 className="display-4 searchMovies">Find your Movie</h1>
                     <Search onKeyHandle={this.onKeyHandle} resultsQuery={this.resultsQuery}/>
-                    <SortSearch sortTitles={this.sortTitles} sortGenres={this.sortGenres}/>      
+                    <SortSearch sortTitles={this.sortTitles} genresActive={this.state.genresActive} titleActive={this.state.titleActive} sortGenres={this.sortGenres}/>      
                 </div>
-                <SortByCategory count={data.length} sortRelease={this.sortRelease} sortRating={this.sortRating} />              
+                <SortByCategory count={data.length} sortRelease={this.sortRelease} releaseActive={this.state.releaseActive} ratingActive={this.state.ratingActive} sortRating={this.sortRating} />              
                 <MoviesList data={data} sortTitles={this.sortTitles} />                        
             </div>
         );

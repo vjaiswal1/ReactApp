@@ -53,22 +53,16 @@ body {
     color: #fff;
 }
 
-.btn-secondary-selected {
+.active {
     background: #F65261;
     color: #fff;
     border-color: #F65261;
 }
 
-.btn-sort_toggle {
+.inactive {
     background: lightgrey;
     color: #fff;
     border-color: lightgrey;
-}
-
-.btn-sort_toggle:focus {
-    background: #F65261;
-    color: #fff;
-    border-color: #F65261;
 }
 
 .moviesubheadingSection {
