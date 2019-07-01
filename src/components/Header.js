@@ -8,15 +8,15 @@ import SortByCategory from './SortByCategory'
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.MoviesData = MoviesData.data;
         this.state = {
-            results: this.MoviesData,
-            updatedMovieList: this.MoviesData,
+            results: MoviesData.data,
+            updatedMovieList: MoviesData.data,
             inputs: "",
             titleActive:true,
             genresActive:false,
             releaseActive:false,
-            ratingActive:true
+            ratingActive:true,
+            defaultMoviesData: MoviesData.data
         };
     }
 
@@ -40,7 +40,7 @@ class Header extends Component {
                 return movie.title.toLowerCase().includes(filteredItem);
             })
         } else {
-            movieList = this.MoviesData;
+            movieList = defaultMoviesData;
         }
         this.setState({
             results: movieList,

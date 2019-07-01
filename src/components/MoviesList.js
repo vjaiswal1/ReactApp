@@ -1,32 +1,34 @@
 import React, {Component} from 'react';
-import MovieDetailed from './MovieDetailed'; 
+import MovieDetailed from './MovieDetailed'
+import MovieApi from '../services/movie'
+import MovieCard from './MovieCard'
 
 class MoviesList extends Component {
     constructor(props){
         super(props)
         this.state = {
             singleMovieData:"",
-            isDetailedView: false
+            isDetailedView: false,
+            someData: this.props
         }
     }
     componentDidMount(){
         this.props.sortTitles();        
-    }   
+    }
 
     detailedMovieAPI =(id) =>{
-        fetch(`https://reactjs-cdp.herokuapp.com/movies/${id}`)
-       .then(res => res.json())
-       .then(result => {
-           this.setState({
-             isDetailedView: true,
-             singleMovieData: result
-           });
+        MovieApi(id)
+        .then(result => {
+            this.setState({
+              isDetailedView: true,
+              singleMovieData: result
+            });
         },
         (error) => {
-           this.setState({
-             isDetailedView: true,
-             error
-           });
+            this.setState({
+                isDetailedView: true,
+                error
+            });
         })
     }
 
@@ -35,14 +37,7 @@ class MoviesList extends Component {
         const MovieList = () => data.map(movie => 
             <div className="card col-md-3 mx-3 my-3 px-0" key={movie.id}>
                 <img className="card-img-top" src={movie.poster_path} onClick={this.detailedMovieAPI.bind(null, movie.id)} alt={movie.title} />
-                <div className="card-body">                    
-                    <h5 className="card-title">{movie.title}</h5>
-                    <p className="card-text clearfix">
-                    <span className="float-left">{movie.title}</span> 
-                    <button type="button" className="btn btn-outline-secondary btn-sm float-right">{movie.release_date}</button>
-                    </p> 
-                    <p className="movieGenres">{movie.genres.join(" & ")}</p>                    
-                </div>                       
+                <MovieCard title={movie.title} release_date={movie.release_date} genres={movie.genres} />                                    
             </div>
         )
         return (
