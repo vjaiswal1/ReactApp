@@ -16,6 +16,10 @@ class MoviesList extends Component {
         this.props.sortTitles();        
     }
 
+    getYear(val) {
+        return new Date(val).getFullYear();
+    }
+
     detailedMovieAPI =(id) =>{
         MovieApi(id)
         .then(result => {
@@ -34,10 +38,11 @@ class MoviesList extends Component {
 
     render() {
         const {data} = this.props;
-        const MovieList = () => data.map(movie => 
+        const getFullYear = new Date()
+        const MovieList = () => data.map(movie =>
             <div className="card col-md-3 mx-3 my-3 px-0" key={movie.id}>
                 <img className="card-img-top" src={movie.poster_path} onClick={this.detailedMovieAPI.bind(null, movie.id)} alt={movie.title} />
-                <MovieCard title={movie.title} release_date={movie.release_date} genres={movie.genres} />                                    
+                <MovieCard title={movie.title} release_date={this.getYear(movie.release_date)} genres={movie.genres} />                                    
             </div>
         )
         return (

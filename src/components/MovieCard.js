@@ -4,7 +4,7 @@ const MovieCard = ({title, release_date, genres}) =>
             <h5 className="card-title">{title}</h5>
             <p className="card-text clearfix">
                 <span className="float-left">{title}</span> 
-                <button type="button" className="btn btn-outline-secondary btn-sm float-right">{release_date}</button>
+                <span className="card-releaseDate float-right">{release_date}</span>
             </p> 
             <p className="movieGenres">{genres.join(" & ")}</p>                    
         </div>
