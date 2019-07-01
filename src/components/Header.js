@@ -16,7 +16,6 @@ class Header extends Component {
             genresActive:false,
             releaseActive:false,
             ratingActive:true,
-            defaultMoviesData: MoviesData.data
         };
     }
 
@@ -40,7 +39,7 @@ class Header extends Component {
                 return movie.title.toLowerCase().includes(filteredItem);
             })
         } else {
-            movieList = defaultMoviesData;
+            movieList = MoviesData.data;
         }
         this.setState({
             results: movieList,
