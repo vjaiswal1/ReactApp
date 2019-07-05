@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-import MoviesList from './MoviesList'
-import MoviesData from '../data/moviesList'
-import Search from './Search'
-import SortSearch from './SortSearch'
-import SortByCategory from './SortByCategory'
+import React, { Component } from "react"
+import MoviesList from '../MoviesList/MoviesList'
+import MoviesData from '../../data/moviesList'
+import Search from '../Search/Search'
+import SortSearch from '../SortSearch/SortSearch'
+import SortByCategory from '../SortByCategory/SortByCategory'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import './mainContainer.css'
 
-class Header extends Component {
+class MainContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +22,7 @@ class Header extends Component {
         };
     }
 
-    onKeyHandle =(e) => {
+    onKeyHandle = (e) => {
         let inputVal = "";
         if (e.target.value !== '') {
             inputVal = e.target.value;
@@ -110,17 +113,15 @@ class Header extends Component {
         return (
             <div>
                 <div className="jumbotron">
-                    <h4 className="mainHeading">
-                        <strong>netflix</strong>roulette
-                    </h4>
-                    <h1 className="display-4 searchMovies">Find your Movie</h1>
+                    <Header />
                     <Search onKeyHandle={this.onKeyHandle} resultsQuery={this.resultsQuery}/>
                     <SortSearch sortTitles={this.sortTitles} genresActive={this.state.genresActive} titleActive={this.state.titleActive} sortGenres={this.sortGenres}/>      
                 </div>
                 <SortByCategory count={data.length} sortRelease={this.sortRelease} releaseActive={this.state.releaseActive} ratingActive={this.state.ratingActive} sortRating={this.sortRating} />              
-                <MoviesList data={data} sortTitles={this.sortTitles} />                        
+                <MoviesList data={data} sortTitles={this.sortTitles} /> 
+                <Footer />                       
             </div>
         );
     }
 }
-export default Header;
+export default MainContainer;

@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import MovieDetailed from './MovieDetailed'
-import MovieApi from '../services/movie'
-import MovieCard from './MovieCard'
+import React, { Component } from 'react';
+import MovieDetailed from '../MovieDetailed/MovieDetailed';
+import MovieApi from '../../services/movie';
+import MovieCard from '../MovieCard/MovieCard';
+import './movieList.css'
 
 class MoviesList extends Component {
     constructor(props){
@@ -38,11 +39,10 @@ class MoviesList extends Component {
 
     render() {
         const {data} = this.props;
-        const getFullYear = new Date()
         const MovieList = () => data.map(movie =>
             <div className="card col-md-3 mx-3 my-3 px-0" key={movie.id}>
                 <img className="card-img-top" src={movie.poster_path} onClick={this.detailedMovieAPI.bind(null, movie.id)} alt={movie.title} />
-                <MovieCard title={movie.title} release_date={this.getYear(movie.release_date)} genres={movie.genres} />                                    
+                <MovieCard title={movie.title} releaseDate={this.getYear(movie.release_date)} genres={movie.genres} />                                    
             </div>
         )
         return (

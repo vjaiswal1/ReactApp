@@ -1,0 +1,13 @@
+.card-releaseDate {
+    border: 1px solid #6c757d;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.movieGenres {
+    font-size: .75rem;
+}
+
+.card-body {
+    background: #232323;
+}

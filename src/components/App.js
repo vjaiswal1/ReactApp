@@ -1,17 +1,11 @@
-import React, { Component } from 'react'
-import Header from './Header';
-import Footer from './Footer';
-import Main from './Main';
-import '../styles/custom.css'
-import ErrorBoundary from './common/ErrorBoundary'
-class App extends Component {
-    render() {
-        return (
-            <ErrorBoundary>
-                <Main />
-                <Footer />
-            </ErrorBoundary>
-        )
-    }
-}
+import React from 'react';
+import MainContainer from './MainContainer/MainContainer';
+import ErrorBoundary from './common/ErrorBoundary';
+
+const App = () => (
+  <ErrorBoundary>
+    <MainContainer />
+  </ErrorBoundary>
+);
+
 export default App;
