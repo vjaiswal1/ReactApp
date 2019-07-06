@@ -1,5 +1,5 @@
 import React from 'react';
-import MainContainer from 'Components/MainContainer';
+import MainContainer from 'Utilities/MainContainer';
 import ErrorBoundary from 'Components/common/ErrorBoundary';
 
 const App = () => (

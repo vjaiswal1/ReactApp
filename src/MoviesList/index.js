@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MovieDetailed from 'Components/MovieDetailed';
+import MovieDetailed from 'Utilities/MovieDetailed';
 import MovieApi from 'Utilities/services/movie';
-import MovieCard from 'Components/MovieCard';
+import MovieCard from 'Utilities/MovieCard';
 import './MovieList.css'
 
 class MoviesList extends Component {

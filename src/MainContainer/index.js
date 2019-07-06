@@ -1,11 +1,11 @@
 import React, { Component } from "react"
-import MoviesList from 'Components/MoviesList'
+import MoviesList from 'Utilities/MoviesList'
 import MoviesData from 'Utilities/data/moviesList'
-import Search from 'Components/Search'
-import SortSearch from 'Components/SortSearch'
-import SortByCategory from 'Components/SortByCategory'
-import Header from 'Components/Header'
-import Footer from 'Components/Footer'
+import Search from 'Utilities/Search'
+import SortSearch from 'Utilities/SortSearch'
+import SortByCategory from 'Utilities/SortByCategory'
+import Header from 'Utilities/Header'
+import Footer from 'Utilities/Footer'
 import './MainContainer.css'
 
 class MainContainer extends Component {
