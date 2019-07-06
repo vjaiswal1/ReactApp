@@ -1,8 +1,8 @@
 import React from 'react';
-import './footer.css';
+import './Footer.css';
 
 const Footer = () => (
-  <div className="footer">
+  <div className="footerBg">
     <strong>netflix</strong>
       roulette
   </div>

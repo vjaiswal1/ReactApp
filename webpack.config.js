@@ -33,10 +33,15 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    alias: {
+      Utilities: path.resolve(__dirname, 'src'),
+      Components: path.resolve(__dirname, 'src/components'),
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
   ],
-
 };

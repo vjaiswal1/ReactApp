@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './movieDetailed.css';
+import './MovieDetailed.css';
 
 const MovieDetailed = ({ singleMovieData }) => (
   <div className="media">

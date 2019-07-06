@@ -1,6 +1,6 @@
 import React from 'react';
-import MainContainer from './MainContainer/MainContainer';
-import ErrorBoundary from './common/ErrorBoundary';
+import MainContainer from 'Components/MainContainer';
+import ErrorBoundary from 'Components/common/ErrorBoundary';
 
 const App = () => (
   <ErrorBoundary>

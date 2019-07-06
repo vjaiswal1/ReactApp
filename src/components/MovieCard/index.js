@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './movieCard.css';
+import './MovieCard.css';
 
 const MovieCard = ({ title, releaseDate, genres }) => (
   <div className="card-body">

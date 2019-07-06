@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MovieDetailed from '../MovieDetailed/MovieDetailed';
-import MovieApi from '../../services/movie';
-import MovieCard from '../MovieCard/MovieCard';
-import './movieList.css'
+import MovieDetailed from 'Components/MovieDetailed';
+import MovieApi from 'Utilities/services/movie';
+import MovieCard from 'Components/MovieCard';
+import './MovieList.css'
 
 class MoviesList extends Component {
     constructor(props){

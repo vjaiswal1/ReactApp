@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../common/Button';
-import './sortByCategory.css'
+import './SortByCategory.css';
 
 const SortByCategory = ({
   releaseActive, ratingActive, sortRelease, sortRating, count,

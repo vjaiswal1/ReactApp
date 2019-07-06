@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../common/Button';
-import './search.css'
+import Button from 'Components/common/Button';
+import './Search.css';
 
 const Search = ({ resultsQuery, onKeyHandle }) => (
   <form className="navbar-form navbar-left" role="search">

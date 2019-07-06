@@ -1,12 +1,12 @@
 import React, { Component } from "react"
-import MoviesList from '../MoviesList/MoviesList'
-import MoviesData from '../../data/moviesList'
-import Search from '../Search/Search'
-import SortSearch from '../SortSearch/SortSearch'
-import SortByCategory from '../SortByCategory/SortByCategory'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-import './mainContainer.css'
+import MoviesList from 'Components/MoviesList'
+import MoviesData from 'Utilities/data/moviesList'
+import Search from 'Components/Search'
+import SortSearch from 'Components/SortSearch'
+import SortByCategory from 'Components/SortByCategory'
+import Header from 'Components/Header'
+import Footer from 'Components/Footer'
+import './MainContainer.css'
 
 class MainContainer extends Component {
     constructor(props) {
@@ -115,9 +115,18 @@ class MainContainer extends Component {
                 <div className="jumbotron">
                     <Header />
                     <Search onKeyHandle={this.onKeyHandle} resultsQuery={this.resultsQuery}/>
-                    <SortSearch sortTitles={this.sortTitles} genresActive={this.state.genresActive} titleActive={this.state.titleActive} sortGenres={this.sortGenres}/>      
+                    <SortSearch 
+                    sortTitles={this.sortTitles} 
+                    genresActive={this.state.genresActive} 
+                    titleActive={this.state.titleActive} 
+                    sortGenres={this.sortGenres}/>      
                 </div>
-                <SortByCategory count={data.length} sortRelease={this.sortRelease} releaseActive={this.state.releaseActive} ratingActive={this.state.ratingActive} sortRating={this.sortRating} />              
+                <SortByCategory 
+                count={data.length} 
+                sortRelease={this.sortRelease} 
+                releaseActive={this.state.releaseActive} 
+                ratingActive={this.state.ratingActive} 
+                sortRating={this.sortRating} />              
                 <MoviesList data={data} sortTitles={this.sortTitles} /> 
                 <Footer />                       
             </div>

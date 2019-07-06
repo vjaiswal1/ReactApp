@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../common/Button';
-import './sortSearch.css';
+import Button from 'Components/common/Button';
 
 const SortSearch = ({
   titleActive, genresActive, sortTitles, sortGenres,
