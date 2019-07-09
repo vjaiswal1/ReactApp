@@ -5,8 +5,8 @@ import {
   FILTERED_DATA,
 } from "Components/actions";
 
-//  function productReducer (state={}, {type, data, imageId}){
-function productReducer(state = {}, action) {
+
+function movieReducer(state = {}, action) {
   switch (action.type) {
     case REQUEST_API_DATA:
       return {
@@ -32,4 +32,4 @@ function productReducer(state = {}, action) {
       return state;
   }
 }
-export default productReducer;
+export default movieReducer;

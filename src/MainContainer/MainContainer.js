@@ -105,7 +105,7 @@ class MainContainer extends Component {
   }
 
   render() {
-    let data = this.props.productReducer ? this.props.productReducer.data : [];
+    let data = this.props.movieReducer ? this.props.movieReducer.data : [];
     data = this.props.filteredTitle ? this.props.filteredTitle : [];
     return (
       <div>
@@ -141,9 +141,9 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  productReducer: state.productReducer.response,
+  movieReducer: state.movieReducer.response,
   params: [state.params],
-  filteredTitle: state.productReducer.filteredTitle
+  filteredTitle: state.movieReducer.filteredTitle
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

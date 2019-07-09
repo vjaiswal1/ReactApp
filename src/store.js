@@ -2,13 +2,13 @@
 import {
   createStore, applyMiddleware, combineReducers, compose,
 } from 'redux';
-import productReducer from 'Components/reducers';
+import movieReducer from 'Components/reducers';
 import createSagaMiddleware from 'redux-saga';
 import mySaga from 'Components/saga';
 
 
 const allReducers = combineReducers({
-  productReducer,
+  movieReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

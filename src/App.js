@@ -11,7 +11,7 @@ const App = () => (
   </ErrorBoundary>
 );
 
-const mapStateToProps = state => ({ productReducer: state.productReducer, params: [state.params]});
+const mapStateToProps = state => ({ movieReducer: state.movieReducer, params: [state.params]});
 const mapDispatchToProps = dispatch => bindActionCreators({ requestApiData, clickStoreData },
   dispatch);
 
