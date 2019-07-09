@@ -1,2 +1,1 @@
-export { default } from 'src/SortByCategory/SortByCategory';
-
+export { default } from './SortBycategory';

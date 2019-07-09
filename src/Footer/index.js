@@ -1,2 +1,1 @@
-export { default } from 'src/Footer/Footer';
-
+export { default } from './Footer';

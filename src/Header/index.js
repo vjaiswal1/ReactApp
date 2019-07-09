@@ -1,2 +1,1 @@
-export { default } from 'src/Header/Header';
-
+export { default } from './Header';

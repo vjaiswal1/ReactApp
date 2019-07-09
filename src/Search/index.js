@@ -1,2 +1,1 @@
-export { default } from 'src/Search/Search';
-
+export { default } from './Search';

@@ -1,2 +1,1 @@
-export { default } from 'src/SortSearch/SortSearch';
-
+export { default } from './SortSearch';

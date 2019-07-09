@@ -1,3 +1,1 @@
-export { default } from 'src/MoviesList/MoviesList';
-
-
+export { default } from './MoviesList';
