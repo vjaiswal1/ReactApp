@@ -7,7 +7,7 @@ const Header = () => (
       <strong>netflix</strong>
         roulette
     </h4>
-    <h1 className={styles['display-4 searchMovies']}>Find your Movie</h1>
+    <h1 className={styles.searchMovies}>Find your Movie</h1>
   </div>
 );
 export default Header;

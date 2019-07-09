@@ -6,7 +6,6 @@ import movieReducer from 'Components/reducers';
 import createSagaMiddleware from 'redux-saga';
 import mySaga from 'Components/saga';
 
-
 const allReducers = combineReducers({
   movieReducer,
 });

@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'Components/common/Button';
+import cx from 'classnames';
+import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './SortByCategory.css';
 
 const SortByCategory = ({
   releaseActive, ratingActive, sortRelease, sortRating,
 }) => (
-  <div className={styles['moviesubheadingSection clearfix']}>
-    <div className={styles['float-left float-md-left']}>
+  <div className={cx(styles.moviesubheadingSection, globalStyles.clearfix)}>
+    <div className={cx(globalStyles['float-left'], globalStyles['float-md-left'])}>
 
 movie found
     </div>
-    <div className={styles['float-right float-md-right']}>
+    <div className={cx(globalStyles['float-right'], globalStyles['float-md-right'])}>
 SORT BY
-      <Button className={styles[`btn-sm ml-1 ${releaseActive === true ? 'active' : 'inactive'}`]} onClick={sortRelease} children="RELEASE DATE" />
-      <Button className={styles[`btn-sm ml-1 ${ratingActive === true ? 'active' : 'inactive'}`]} onClick={sortRating} children="RATING" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${releaseActive === true ? styles.active : styles.inactive}`} onClick={sortRelease} children="RELEASE DATE" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${ratingActive === true ? styles.active : styles.inactive}`} onClick={sortRating} children="RATING" />
     </div>
   </div>
 );

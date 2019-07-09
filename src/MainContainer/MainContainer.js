@@ -6,6 +6,8 @@ import SortSearch from "src/SortSearch";
 import SortByCategory from "src/SortByCategory";
 import Header from "src/Header";
 import Footer from "src/Footer";
+import cx from 'classnames';
+import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from "./MainContainer.css";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -109,7 +111,8 @@ class MainContainer extends Component {
     data = this.props.filteredTitle ? this.props.filteredTitle : [];
     return (
       <div>
-        <div className={styles.jumbotron}>
+import cx from 'classnames';
+        <div className={cx(globalStyles.jumbotron, styles.jumbotron)}>
           <Header />
           <Search
             onKeyHandle={this.onKeyHandle}

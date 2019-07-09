@@ -8,7 +8,7 @@ import {
   CLICK_REQUEST_DATA,
   clickStoreData,
   FILTERED_DATA,
-  filteredFunc
+  filteredFunc,
 } from 'Components/actions';
 import { fetchData } from 'src/api';
 import { fetchDetailMovie } from 'src/api/fetchDetailMovie';
@@ -36,7 +36,6 @@ function* clickUpdateData(action) {
   }
 }
 function* filteredData() {
-  
   const action = yield take(FILTERED_DATA);
   yield put(filteredFunc(action.filteredTitle));
 }
