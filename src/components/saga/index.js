@@ -10,13 +10,13 @@ import {
   FILTERED_DATA,
   filteredFunc,
 } from 'Components/actions';
-import { fetchData } from 'src/api';
-import { fetchDetailMovie } from 'src/api/fetchDetailMovie';
+import { moviesData } from 'src/api';
+import { detailedMovieApi } from 'src/api/detailedMovieApi';
 
 const getPage = state => state.nextPage;
 function* fetchProducts() {
   const page = yield select(getPage);
-  const dataDetail = yield call(fetchData, page);
+  const dataDetail = yield call(moviesData, page);
   yield put(receiveApiData(dataDetail));
 }
 function* clickUpdateData(action) {
@@ -24,7 +24,7 @@ function* clickUpdateData(action) {
     while (true) {
       const page = yield select(getPage);
       const dataDetail = yield call(
-        fetchDetailMovie,
+        detailedMovieApi,
         action.params,
         action.data,
         page,

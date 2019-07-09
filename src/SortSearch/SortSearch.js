@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'Components/common/Button';
 import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import styles from 'src/SortBycategory/SortBycategory.css';
+import styles from './SortSearch.css';
 
 const SortSearch = ({
   titleActive, genresActive, sortTitles, sortGenres,

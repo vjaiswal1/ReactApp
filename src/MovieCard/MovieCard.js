@@ -5,7 +5,7 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from './MovieCard.css';
 
 const MovieCard = ({ title, releaseDate, genres }) => (
-  <div className={globalStyles['card-body']}>
+  <div className={styles['card-body']}>
     <h5 className={globalStyles['card-title']}>{title}</h5>
     <p className={cx(globalStyles['card-text'], globalStyles.clearfix)}>
       <span className={globalStyles['float-left']}>{title}</span>

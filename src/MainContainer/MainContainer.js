@@ -111,7 +111,6 @@ class MainContainer extends Component {
     data = this.props.filteredTitle ? this.props.filteredTitle : [];
     return (
       <div>
-import cx from 'classnames';
         <div className={cx(globalStyles.jumbotron, styles.jumbotron)}>
           <Header />
           <Search
@@ -130,7 +129,7 @@ import cx from 'classnames';
             </Switch>
             </Router>          
         </div>
-        <SortByCategory
+        <SortByCategory count={data.length}
           sortRelease={this.sortRelease}
           releaseActive={this.state.releaseActive}
           ratingActive={this.state.ratingActive}

@@ -1,10 +1,9 @@
 const BASE_URL = 'https://reactjs-cdp.herokuapp.com/movies/';
-const moviesData = async () => {
+export const detailedMovieApi = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}`);
+    const response = await fetch(`${BASE_URL}${id}`);
     return await response.json();
   } catch (e) {
     console.log(e);
   }
 };
-export { moviesData };

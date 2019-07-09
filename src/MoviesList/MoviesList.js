@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MovieDetailed from 'src/MovieDetailed';
-import MovieApi from 'src/services/movie';
+import {detailedMovieApi} from 'src/api/detailedMovieApi';
 import MovieCard from 'src/MovieCard';
 import cx from 'classnames';
 import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -12,8 +12,7 @@ class MoviesList extends Component {
         super(props)
         this.state = {
             singleMovieData:"",
-            isDetailedView: false,
-            someData: this.props
+            isDetailedView: false
         }
     }
     componentDidMount(){
@@ -24,8 +23,8 @@ class MoviesList extends Component {
         return new Date(val).getFullYear();
     }
 
-    detailedMovieAPI =(id) =>{
-        MovieApi(id)
+    detailedMovie = (id) =>{
+        detailedMovieApi(id)
         .then(result => {
             this.setState({
               isDetailedView: true,
@@ -44,7 +43,7 @@ class MoviesList extends Component {
         const {data} = this.props;
             const MovieList = () => data.map(movie =>
             <div className={cx(globalStyles.card, globalStyles['col-md-3'], globalStyles['mx-3'], globalStyles['my-3'], globalStyles['px-0'])} key={movie.id}>
-            <Link to={`/film/${movie.id}`} onClick={this.detailedMovieAPI.bind(null, movie.id)}>
+            <Link to={`/film/${movie.id}`} onClick={this.detailedMovie.bind(null, movie.id)}>
                 <img className={globalStyles['card-img-top']} src={movie.poster_path}  alt={movie.title} />
             </Link>
             <MovieCard title={movie.title} releaseDate={this.getYear(movie.release_date)} genres={movie.genres} />                                    
