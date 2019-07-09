@@ -3,7 +3,7 @@ body {
 }
 
 .jumbotron {
-    background-image: url("../assest/netflix-header.jpg");
+    background-image: url("../assests/netflix-header.jpg");
     background-size: cover;
     border-radius: 0;
     margin-bottom: 0;

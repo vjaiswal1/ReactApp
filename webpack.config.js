@@ -2,10 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -19,8 +19,17 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader',
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
+            },
+          },
         ],
       },
       {
@@ -35,7 +44,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Utilities: path.resolve(__dirname, 'src'),
+      src: path.resolve(__dirname, 'src'),
       Components: path.resolve(__dirname, 'src/components'),
     },
   },

@@ -1,10 +1,2 @@
-import React from 'react';
-import './Footer.css';
+export { default } from 'src/Footer/Footer';
 
-const Footer = () => (
-  <div className="footerBg">
-    <strong>netflix</strong>
-      roulette
-  </div>
-);
-export default Footer;

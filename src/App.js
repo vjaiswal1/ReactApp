@@ -1,6 +1,9 @@
 import React from 'react';
-import MainContainer from 'Utilities/MainContainer';
+import MainContainer from 'src/MainContainer';
 import ErrorBoundary from 'Components/common/ErrorBoundary';
+import { bindActionCreators } from 'redux';
+import { requestApiData, clickStoreData } from 'Components/actions';
+import { connect } from 'react-redux';
 
 const App = () => (
   <ErrorBoundary>
@@ -8,4 +11,8 @@ const App = () => (
   </ErrorBoundary>
 );
 
-export default App;
+const mapStateToProps = state => ({ productReducer: state.productReducer, params: [state.params]});
+const mapDispatchToProps = dispatch => bindActionCreators({ requestApiData, clickStoreData },
+  dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
