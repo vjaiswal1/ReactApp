@@ -1,18 +1,18 @@
 import React from 'react';
 import MainContainer from 'src/MainContainer';
 import ErrorBoundary from 'Components/common/ErrorBoundary';
-import { bindActionCreators } from 'redux';
-import { requestApiData, clickStoreData } from 'Components/actions';
-import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from 'src/redux/store';
 
 const App = () => (
-  <ErrorBoundary>
-    <MainContainer />
-  </ErrorBoundary>
+  <Provider store={store}>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <MainContainer />
+      </ErrorBoundary>
+    </BrowserRouter>
+  </Provider>
 );
 
-const mapStateToProps = state => ({ movieReducer: state.movieReducer, params: [state.params]});
-const mapDispatchToProps = dispatch => bindActionCreators({ requestApiData, clickStoreData },
-  dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

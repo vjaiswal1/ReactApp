@@ -6,7 +6,7 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from './SortByCategory.css';
 
 const SortByCategory = ({
-  releaseActive, ratingActive, sortRelease, sortRating, count,
+  releaseActive, ratingActive, handleReleaseDateSortClick, handleRatingSortClick, count,
 }) => (
   <div className={cx(styles.moviesubheadingSection, globalStyles.clearfix)}>
     <div className={cx(globalStyles['float-left'], globalStyles['float-md-left'])}>
@@ -17,15 +17,17 @@ const SortByCategory = ({
     </div>
     <div className={cx(globalStyles['float-right'], globalStyles['float-md-right'])}>
       SORT BY
-      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${releaseActive === true ? styles.active : styles.inactive}`} onClick={sortRelease} children="RELEASE DATE" />
-      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${ratingActive === true ? styles.active : styles.inactive}`} onClick={sortRating} children="RATING" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${releaseActive === true ? styles.active : styles.inactive}`} onClick={handleReleaseDateSortClick} children="RELEASE DATE" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${ratingActive === true ? styles.active : styles.inactive}`} onClick={handleRatingSortClick} children="RATING" />
     </div>
   </div>
 );
 SortByCategory.propTypes = {
   releaseActive: PropTypes.bool.isRequired,
   ratingActive: PropTypes.bool.isRequired,
-  sortRelease: PropTypes.func.isRequired,
-  sortRating: PropTypes.func.isRequired,
+  handleReleaseDateSortClick: PropTypes.func.isRequired,
+  handleRatingSortClick: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+
 };
 export default SortByCategory;

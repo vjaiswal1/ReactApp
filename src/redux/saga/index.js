@@ -1,17 +1,15 @@
 import {
-  call, put, takeEvery, select, all, take,
+  call, put, takeEvery, select, all,
 } from 'redux-saga/effects';
-
+import { moviesData } from 'src/api';
+import { detailedMovieApi } from 'src/api/detailedMovieApi';
 import {
   RECEIVE_API_DATA,
   receiveApiData,
   CLICK_REQUEST_DATA,
   clickStoreData,
-  FILTERED_DATA,
-  filteredFunc,
-} from 'Components/actions';
-import { moviesData } from 'src/api';
-import { detailedMovieApi } from 'src/api/detailedMovieApi';
+} from '../actions';
+
 
 const getPage = state => state.nextPage;
 function* fetchProducts() {
@@ -35,13 +33,9 @@ function* clickUpdateData(action) {
     if (yield cancelled()) yield put(actions.requestFailure('Sync cancelled!'));
   }
 }
-function* filteredData() {
-  const action = yield take(FILTERED_DATA);
-  yield put(filteredFunc(action.filteredTitle));
-}
+
 function* mySaga() {
   yield all([RECEIVE_API_DATA, fetchProducts()]);
   yield takeEvery(CLICK_REQUEST_DATA, clickUpdateData);
-  yield all([FILTERED_DATA, filteredData()]);
 }
 export default mySaga;

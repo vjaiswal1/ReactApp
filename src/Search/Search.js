@@ -5,19 +5,18 @@ import cx from 'classnames';
 import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './Search.css';
 
-const Search = ({ resultsQuery, onKeyHandle }) => (
+const Search = ({ handleSearchText }) => (
   <form className={cx(globalStyles['navbar-form'], globalStyles['navbar-left'])} role="search">
     <div className={cx(globalStyles['input-group'], globalStyles['mb-3'])}>
-      <input type="text" className={globalStyles['form-control']} placeholder="Enter movie's name" onChange={onKeyHandle} />
+      <input type="text" className={globalStyles['form-control']} placeholder="Enter movie's name" onChange={handleSearchText} />
       <div className="input-group-append">
-        <Button className={styles.searchBtn} onClick={resultsQuery} children="Search" />
+        <Button className={styles.searchBtn} children="Search" />
       </div>
     </div>
   </form>
 );
 Search.propTypes = {
-  resultsQuery: PropTypes.func.isRequired,
-  onKeyHandle: PropTypes.func.isRequired,
+  handleSearchText: PropTypes.func.isRequired,
 };
 
 export default Search;

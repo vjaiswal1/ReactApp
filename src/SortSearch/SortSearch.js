@@ -5,18 +5,18 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from './SortSearch.css';
 
 const SortSearch = ({
-  titleActive, genresActive, sortTitles, sortGenres,
+  titleActive, genresActive, handleSortTitleClick, handleSortGenreClick,
 }) => (
   <div className={globalStyles['btn-group']} role="group" aria-label="Basic example">
         SEARCH BY
-    <Button className={`${titleActive === true ? styles.active : styles.inactive}`} onClick={sortTitles} children="Title" />
-    <Button className={`${genresActive === true ? styles.active : styles.inactive}`} onClick={sortGenres} children="Gengre" />
+    <Button className={`${titleActive === true ? styles.active : styles.inactive}`} onClick={handleSortTitleClick} children="Title" />
+    <Button className={`${genresActive === true ? styles.active : styles.inactive}`} onClick={handleSortGenreClick} children="Gengre" />
   </div>
 );
 SortSearch.propTypes = {
   titleActive: PropTypes.bool.isRequired,
   genresActive: PropTypes.bool.isRequired,
-  sortTitles: PropTypes.func.isRequired,
-  sortGenres: PropTypes.func.isRequired,
+  handleSortTitleClick: PropTypes.func.isRequired,
+  handleSortGenreClick: PropTypes.func.isRequired,
 };
 export default SortSearch;

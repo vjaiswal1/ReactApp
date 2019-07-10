@@ -12,21 +12,16 @@ import styles from "./MainContainer.css";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
-import history from "Components/history";
+import history from "src/redux/history";
 import {
   requestApiData,
   clickStoreData,
-  filteredFunc
-} from "Components/actions";
+} from "src/redux/actions";
 
 class MainContainer extends Component {
   constructor(props) {
     super(props);
-    this.dataFromStore = "";
-    this.sortByTitle = {};
     this.state = {
-      results: MoviesData.data,
-      updatedMovieList: MoviesData.data,
       inputs: "",
       titleActive: true,
       genresActive: false,
@@ -35,7 +30,7 @@ class MainContainer extends Component {
     };
   }
 
-  onKeyHandle = e => {
+  handleSearchText = e => {
     let inputVal = "";
     if (e.target.value !== "") {
       inputVal = e.target.value;
@@ -45,97 +40,100 @@ class MainContainer extends Component {
     });
   };
 
-  resultsQuery = () => {
-    const currentMovieList = this.state.updatedMovieList;
-    let filteredItem = this.state.inputs;
-    let movieList = "";
-    if (filteredItem !== "") {
-      movieList = currentMovieList.filter(movie => {
+  handleSortTitleClick = () => {
+    this.setState({ titleActive: true, genresActive: false});
+  }
+
+  handleSortGenreClick = () => {
+    this.setState({ titleActive: false, genresActive: true});
+  }
+
+  handleReleaseDateSortClick = () => {
+    this.setState({ releaseActive: true, ratingActive: false});
+  }
+
+  handleRatingSortClick = () => {
+    this.setState({ releaseActive: false, ratingActive: true});
+  }
+
+  filterMovies = (searchText, titleActive, genresActive, allMovies) => {
+    const currentMovieList = allMovies;
+    let filteredItem = searchText || "";
+    let filteredMovieList = [];
+    if (titleActive) {
+      filteredMovieList = currentMovieList.filter(movie => {
         filteredItem = filteredItem.toLowerCase();
         return movie.title.toLowerCase().includes(filteredItem);
       });
+    } else if(genresActive) {
+      filteredMovieList = currentMovieList.filter(movie => {
+        filteredItem = filteredItem.toLowerCase();
+        const matchedGenre = movie.genres.find(item => item.toLowerCase().includes(filteredItem))
+        return !!matchedGenre;
+      });
     } else {
-      movieList = MoviesData.data;
+      filteredMovieList = MoviesData.data;
     }
-    this.props.filteredFunc(movieList);
+    return filteredMovieList;
   };
 
-  sortGenres = () => {
-    const movieGenres = this.state.results;
-    let sortResult = movieGenres.sort((a, b) => {
-      if (a.genres > b.genres) {
-        return 1;
-      } else if (a.genres < b.genres) {
-        return -1;
-      }
-    });
-    this.props.filteredFunc(sortResult);
-  };
-  sortTitles = () => {
-    const movieTitles = this.state.results;
-    let sortResult = movieTitles.sort((a, b) => {
-      if (a.title > b.title) {
-        return 1;
-      } else if (a.title < b.title) {
-        return -1;
-      }
-    });
-    this.props.filteredFunc(sortResult);
-    if (!this.props.filteredTitle) {
-      return (this.sortByTitle = {});
-    } else {
-      this.sortByTitle = this.props.filteredTitle;
-    }
-  };
-
-  sortRelease = () => {
-    const movieReleaseDate = this.state.results;
+  sortRelease = (movies) => {
+    const movieReleaseDate = movies;
     let sortResult = movieReleaseDate.sort((a, b) => {
       return new Date(b.release_date) - new Date(a.release_date);
     });
-    this.props.filteredFunc(sortResult);
+    return sortResult;
   };
-  sortRating = () => {
-    const movieRatings = this.state.results;
-    let sortResult = movieRatings.sort((a, b) => {
+  
+  sortRating = (movies) => {
+    let sortResult = movies.sort((a, b) => {
       return b.vote_count - a.vote_count;
     });
-    this.props.filteredFunc(sortResult);
+    return sortResult;
   };
-  componentDidMount() {
-    this.sortRating();
+
+  getFilteredAndSortedData = (allMoviesdata, searchText, titleActive, genresActive, releaseActive, ratingActive) =>  {
+    const filteredMoviesData = this.filterMovies(searchText, titleActive, genresActive, allMoviesdata);
+    let filteredAndSortedData = [];
+    if (releaseActive) {
+      filteredAndSortedData = this.sortRelease(filteredMoviesData);
+    } else if(ratingActive) {
+      filteredAndSortedData = this.sortRating(filteredMoviesData);
+    }
+    return filteredAndSortedData;
   }
 
   render() {
-    let data = this.props.movieReducer ? this.props.movieReducer.data : [];
-    data = this.props.filteredTitle ? this.props.filteredTitle : [];
+    let allMoviesdata = this.props.movieReducer ? this.props.movieReducer.data : [];
+    const { inputs : searchText, titleActive, genresActive, releaseActive, ratingActive } = this.state;
+    const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, titleActive, genresActive, releaseActive, ratingActive);
+    const data = filteredAndSortedData || [];
     return (
       <div>
         <div className={cx(globalStyles.jumbotron, styles.jumbotron)}>
           <Header />
           <Search
-            onKeyHandle={this.onKeyHandle}
-            resultsQuery={this.resultsQuery}
+          handleSearchText={this.handleSearchText}
           />
+          <SortSearch
+                genresActive={genresActive}
+                titleActive={titleActive}
+                handleSortTitleClick={this.handleSortTitleClick}
+                handleSortGenreClick={this.handleSortGenreClick} />
           <Router history={history}>
             <Switch>
                 <Route path="/film/:id" component={MoviesList} />
-                <SortSearch
-                sortTitles={this.sortTitles}
-                genresActive={this.state.genresActive}
-                titleActive={this.state.titleActive}
-                sortGenres={this.sortGenres}
-            />
             </Switch>
-            </Router>          
+          </Router>      
         </div>
-        <SortByCategory count={data.length}
-          sortRelease={this.sortRelease}
-          releaseActive={this.state.releaseActive}
-          ratingActive={this.state.ratingActive}
-          sortRating={this.sortRating}
+        <SortByCategory
+          count={data.length}
+          handleReleaseDateSortClick={this.handleReleaseDateSortClick}
+          releaseActive={releaseActive}
+          ratingActive={ratingActive}
+          handleRatingSortClick={this.handleRatingSortClick}
         />
-        <MoviesList data={data} sortTitles={this.sortTitles} />
+        <MoviesList data={data} />
         <Footer />
       </div>
     );
@@ -149,7 +147,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { requestApiData, clickStoreData, filteredFunc },
+    { requestApiData, clickStoreData },
     dispatch
   );
 

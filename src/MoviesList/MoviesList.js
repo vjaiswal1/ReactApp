@@ -15,9 +15,6 @@ class MoviesList extends Component {
             isDetailedView: false
         }
     }
-    componentDidMount(){
-        this.props.sortTitles();        
-    }
 
     getYear(val) {
         return new Date(val).getFullYear();

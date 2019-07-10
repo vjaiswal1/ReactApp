@@ -2,9 +2,7 @@ import {
   RECEIVE_API_DATA,
   CLICK_REQUEST_DATA,
   REQUEST_API_DATA,
-  FILTERED_DATA,
-} from "Components/actions";
-
+} from '../actions';
 
 function movieReducer(state = {}, action) {
   switch (action.type) {
@@ -22,11 +20,6 @@ function movieReducer(state = {}, action) {
       return {
         ...state,
         params: action.params,
-      };
-    case FILTERED_DATA:
-      return {
-        ...state,
-        filteredTitle: action.filteredTitle,
       };
     default:
       return state;
