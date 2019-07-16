@@ -17,6 +17,7 @@ function* fetchProducts() {
   const dataDetail = yield call(moviesData, page);
   yield put(receiveApiData(dataDetail));
 }
+
 function* clickUpdateData(action) {
   try {
     while (true) {

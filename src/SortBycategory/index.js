@@ -1,1 +1,1 @@
-export { default } from './SortBycategory';
+export { default } from './SortByCategory';

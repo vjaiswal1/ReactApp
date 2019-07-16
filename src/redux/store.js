@@ -5,12 +5,18 @@ import {
   combineReducers, 
   compose,
 } from 'redux';
-import movieReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
+import movieReducer from './reducers';
+import SearchReducer from '../Search/SearchReducer';
+import SearchByTypeReducer from '../SearchByType/SearchByTypeReducer';
+import SortByCategoryReducer from '../SortByCategory/SortByCategoryReducer';
 import mySaga from './saga';
 
 const allReducers = combineReducers({
   movieReducer,
+  SearchReducer,
+  SearchByTypeReducer,
+  SortByCategoryReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

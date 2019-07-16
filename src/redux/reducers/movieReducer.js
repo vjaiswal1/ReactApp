@@ -4,7 +4,13 @@ import {
   REQUEST_API_DATA,
 } from '../actions';
 
-function movieReducer(state = {}, action) {
+function movieReducer(state = {
+  inputs: '',
+  titleActive: true,
+  genresActive: false,
+  releaseActive: false,
+  ratingActive: true,
+}, action) {
   switch (action.type) {
     case REQUEST_API_DATA:
       return {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import MoviesList from "src/MoviesList";
-import MoviesData from "src/data/moviesList";
+// import MoviesData from "src/data/moviesList";
 import Search from "src/Search";
-import SortSearch from "src/SortSearch";
+import SearchByType from "src/SearchByType";
 import SortByCategory from "src/SortByCategory";
 import Header from "src/Header";
 import Footer from "src/Footer";
@@ -22,39 +22,40 @@ class MainContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputs: "",
-      titleActive: true,
-      genresActive: false,
-      releaseActive: false,
-      ratingActive: true
+      // inputs: "",
+      // titleActive: true,
+      // genresActive: false,
+      // releaseActive: false,
+      // ratingActive: true
     };
   }
 
-  handleSearchText = e => {
-    let inputVal = "";
-    if (e.target.value !== "") {
-      inputVal = e.target.value;
-    }
-    this.setState({
-      inputs: inputVal
-    });
-  };
+  // handleSearchText = e => {
+  //   let inputVal = "";
+  //   if (e.target.value !== "") {
+  //     inputVal = e.target.value;
+  //   }
+  //   this.setState({
+  //     inputs: inputVal
+  //   });
+  // };
 
-  handleSortTitleClick = () => {
-    this.setState({ titleActive: true, genresActive: false});
-  }
+  // handleSortTitleClick = () => {
 
-  handleSortGenreClick = () => {
-    this.setState({ titleActive: false, genresActive: true});
-  }
+  //   this.setState({ titleActive: true, genresActive: false});
+  // }
 
-  handleReleaseDateSortClick = () => {
-    this.setState({ releaseActive: true, ratingActive: false});
-  }
+  // handleSortGenreClick = () => {
+  //   this.setState({ titleActive: false, genresActive: true});
+  // }
 
-  handleRatingSortClick = () => {
-    this.setState({ releaseActive: false, ratingActive: true});
-  }
+  // handleReleaseDateSortClick = () => {
+  //   this.setState({ releaseActive: true, ratingActive: false});
+  // }
+
+  // handleRatingSortClick = () => {
+  //   this.setState({ releaseActive: false, ratingActive: true});
+  // }
 
   filterMovies = (searchText, titleActive, genresActive, allMovies) => {
     const currentMovieList = allMovies;
@@ -72,7 +73,7 @@ class MainContainer extends Component {
         return !!matchedGenre;
       });
     } else {
-      filteredMovieList = MoviesData.data;
+      // filteredMovieList = MoviesData.data;
     }
     return filteredMovieList;
   };
@@ -104,8 +105,15 @@ class MainContainer extends Component {
   }
 
   render() {
-    let allMoviesdata = this.props.movieReducer ? this.props.movieReducer.data : [];
-    const { inputs : searchText, titleActive, genresActive, releaseActive, ratingActive } = this.state;
+    const { movieReducer } = this.props;
+    const releaseActive = movieReducer ? movieReducer.releaseActive : null;
+    const ratingActive = movieReducer ? movieReducer.ratingActive : null;
+    const genresActive = movieReducer ? movieReducer.genresActive : null;
+    const titleActive = movieReducer ? movieReducer.titleActive : null;
+    const searchText  = movieReducer && movieReducer.inputs ? movieReducer.inputs : "";
+    const movieReducerResponse = movieReducer ? movieReducer.response : [];
+    let allMoviesdata = movieReducerResponse ? movieReducerResponse.data : [];
+    // const { inputs : searchText, titleActive, genresActive } = this.state;
     const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, titleActive, genresActive, releaseActive, ratingActive);
     const data = filteredAndSortedData || [];
     return (
@@ -115,11 +123,12 @@ class MainContainer extends Component {
           <Search
           handleSearchText={this.handleSearchText}
           />
-          <SortSearch
+          <SearchByType
                 genresActive={genresActive}
                 titleActive={titleActive}
-                handleSortTitleClick={this.handleSortTitleClick}
-                handleSortGenreClick={this.handleSortGenreClick} />
+                // handleSortTitleClick={this.handleSortTitleClick}
+                // handleSortGenreClick={this.handleSortGenreClick}
+                />
           <Router history={history}>
             <Switch>
                 <Route path="/film/:id" component={MoviesList} />
@@ -128,10 +137,10 @@ class MainContainer extends Component {
         </div>
         <SortByCategory
           count={data.length}
-          handleReleaseDateSortClick={this.handleReleaseDateSortClick}
+          // handleReleaseDateSortClick={this.handleReleaseDateSortClick}
           releaseActive={releaseActive}
           ratingActive={ratingActive}
-          handleRatingSortClick={this.handleRatingSortClick}
+          // handleRatingSortClick={this.handleRatingSortClick}
         />
         <MoviesList data={data} />
         <Footer />
@@ -141,10 +150,10 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  movieReducer: state.movieReducer.response,
+  movieReducer: state.movieReducer,
   params: [state.params],
-  filteredTitle: state.movieReducer.filteredTitle
 });
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     { requestApiData, clickStoreData },
