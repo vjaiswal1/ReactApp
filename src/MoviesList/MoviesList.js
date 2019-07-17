@@ -37,7 +37,8 @@ class MoviesList extends Component {
     }
 
     render() {
-        const {data} = this.props;
+        const {data : data_} = this.props;
+        const data = data_ || [];
             const MovieList = () => data.map(movie =>
             <div className={cx(globalStyles.card, globalStyles['col-md-3'], globalStyles['mx-3'], globalStyles['my-3'], globalStyles['px-0'])} key={movie.id}>
             <Link to={`/film/${movie.id}`} onClick={this.detailedMovie.bind(null, movie.id)}>

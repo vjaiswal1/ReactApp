@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MoviesList from "src/MoviesList";
-// import MoviesData from "src/data/moviesList";
 import Search from "src/Search";
 import SearchByType from "src/SearchByType";
 import SortByCategory from "src/SortByCategory";
@@ -11,8 +10,6 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from "./MainContainer.css";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Router, Route, Switch } from "react-router-dom";
-import history from "src/redux/history";
 import {
   requestApiData,
   clickStoreData,
@@ -21,60 +18,24 @@ import {
 class MainContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // inputs: "",
-      // titleActive: true,
-      // genresActive: false,
-      // releaseActive: false,
-      // ratingActive: true
-    };
   }
 
-  // handleSearchText = e => {
-  //   let inputVal = "";
-  //   if (e.target.value !== "") {
-  //     inputVal = e.target.value;
-  //   }
-  //   this.setState({
-  //     inputs: inputVal
-  //   });
-  // };
-
-  // handleSortTitleClick = () => {
-
-  //   this.setState({ titleActive: true, genresActive: false});
-  // }
-
-  // handleSortGenreClick = () => {
-  //   this.setState({ titleActive: false, genresActive: true});
-  // }
-
-  // handleReleaseDateSortClick = () => {
-  //   this.setState({ releaseActive: true, ratingActive: false});
-  // }
-
-  // handleRatingSortClick = () => {
-  //   this.setState({ releaseActive: false, ratingActive: true});
-  // }
-
-  filterMovies = (searchText, titleActive, genresActive, allMovies) => {
+  filterMovies = (searchText, activeSearch, allMovies) => {
     const currentMovieList = allMovies;
     let filteredItem = searchText || "";
     let filteredMovieList = [];
-    if (titleActive) {
+    if (activeSearch === 'title') {
       filteredMovieList = currentMovieList.filter(movie => {
         filteredItem = filteredItem.toLowerCase();
         return movie.title.toLowerCase().includes(filteredItem);
       });
-    } else if(genresActive) {
+    } else if(activeSearch === 'genre') {
       filteredMovieList = currentMovieList.filter(movie => {
         filteredItem = filteredItem.toLowerCase();
         const matchedGenre = movie.genres.find(item => item.toLowerCase().includes(filteredItem))
         return !!matchedGenre;
       });
-    } else {
-      // filteredMovieList = MoviesData.data;
-    }
+    } 
     return filteredMovieList;
   };
 
@@ -93,28 +54,26 @@ class MainContainer extends Component {
     return sortResult;
   };
 
-  getFilteredAndSortedData = (allMoviesdata, searchText, titleActive, genresActive, releaseActive, ratingActive) =>  {
-    const filteredMoviesData = this.filterMovies(searchText, titleActive, genresActive, allMoviesdata);
+  getFilteredAndSortedData = (allMoviesdata, searchText, activeSearch, activeSort) =>  {
+    const filteredMoviesData = this.filterMovies(searchText, activeSearch, allMoviesdata);
     let filteredAndSortedData = [];
-    if (releaseActive) {
+    if (activeSort === 'release') {
       filteredAndSortedData = this.sortRelease(filteredMoviesData);
-    } else if(ratingActive) {
+    } else if(activeSort === 'rating') {
       filteredAndSortedData = this.sortRating(filteredMoviesData);
     }
     return filteredAndSortedData;
   }
 
   render() {
-    const { movieReducer } = this.props;
-    const releaseActive = movieReducer ? movieReducer.releaseActive : null;
-    const ratingActive = movieReducer ? movieReducer.ratingActive : null;
-    const genresActive = movieReducer ? movieReducer.genresActive : null;
-    const titleActive = movieReducer ? movieReducer.titleActive : null;
-    const searchText  = movieReducer && movieReducer.inputs ? movieReducer.inputs : "";
+    const { movieReducer, SearchReducer, SearchByTypeReducer, SortByCategoryReducer, match } = this.props;
+    console.log('match:', match);
+    const activeSort = SortByCategoryReducer ? SortByCategoryReducer.activeSort : null;
+    const activeSearch = SearchByTypeReducer ? SearchByTypeReducer.activeSearch : null;
+    const searchText  = SearchReducer && SearchReducer.inputs ? SearchReducer.inputs : "";
     const movieReducerResponse = movieReducer ? movieReducer.response : [];
     let allMoviesdata = movieReducerResponse ? movieReducerResponse.data : [];
-    // const { inputs : searchText, titleActive, genresActive } = this.state;
-    const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, titleActive, genresActive, releaseActive, ratingActive);
+    const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, activeSearch, activeSort);
     const data = filteredAndSortedData || [];
     return (
       <div>
@@ -123,25 +82,9 @@ class MainContainer extends Component {
           <Search
           handleSearchText={this.handleSearchText}
           />
-          <SearchByType
-                genresActive={genresActive}
-                titleActive={titleActive}
-                // handleSortTitleClick={this.handleSortTitleClick}
-                // handleSortGenreClick={this.handleSortGenreClick}
-                />
-          <Router history={history}>
-            <Switch>
-                <Route path="/film/:id" component={MoviesList} />
-            </Switch>
-          </Router>      
+          <SearchByType activeSearch={activeSearch} />
         </div>
-        <SortByCategory
-          count={data.length}
-          // handleReleaseDateSortClick={this.handleReleaseDateSortClick}
-          releaseActive={releaseActive}
-          ratingActive={ratingActive}
-          // handleRatingSortClick={this.handleRatingSortClick}
-        />
+        <SortByCategory count={data.length} activeSort={activeSort} />
         <MoviesList data={data} />
         <Footer />
       </div>
@@ -151,6 +94,9 @@ class MainContainer extends Component {
 
 const mapStateToProps = state => ({
   movieReducer: state.movieReducer,
+  SearchReducer: state.SearchReducer,
+  SearchByTypeReducer: state.SearchByTypeReducer,
+  SortByCategoryReducer: state.SortByCategoryReducer,
   params: [state.params],
 });
 

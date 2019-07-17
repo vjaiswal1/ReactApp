@@ -1,21 +1,18 @@
 import { SET_SEARCH_BY_TITLE, SET_SEARCH_BY_GENRE } from './SearchByTypeActions';
 
 function SearchByTypeReducer(state = {
-  titleActive: true,
-  genresActive: false,
+  activeSearch: 'title',
 }, action) {
   switch (action.type) {
     case SET_SEARCH_BY_TITLE:
       return {
         ...state,
-        titleActive: true,
-        genresActive: false,
+        activeSearch: 'title',
       };
     case SET_SEARCH_BY_GENRE:
       return {
         ...state,
-        titleActive: false,
-        genresActive: true,
+        activeSearch: 'genre',
       };
     default:
       return state;

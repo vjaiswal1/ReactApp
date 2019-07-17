@@ -1,6 +1,9 @@
 import React from 'react';
 
-const NoContent = ({ data }) => <h1> { data } </h1>;
-const NotFound = () => <NoContent data={ data } />
+const NotFound = () => (
+  <div>
+    <p>No Data Found!!</p>
+  </div>
+);
 
 export default NotFound;

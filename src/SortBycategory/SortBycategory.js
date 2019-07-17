@@ -8,7 +8,7 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from './SortByCategory.css';
 
 const SortByCategory = ({
-  releaseActive, ratingActive, count, setSortByRating, setSortByReleaseDate,
+  activeSort, count, dispatchSetSortByRating, dispatchSetSortByReleaseDate,
 }) => (
   <div className={cx(styles.moviesubheadingSection, globalStyles.clearfix)}>
     <div className={cx(globalStyles['float-left'], globalStyles['float-md-left'])}>
@@ -19,26 +19,25 @@ const SortByCategory = ({
     </div>
     <div className={cx(globalStyles['float-right'], globalStyles['float-md-right'])}>
       SORT BY
-      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${releaseActive === true ? styles.active : styles.inactive}`} onClick={setSortByReleaseDate} children="RELEASE DATE" />
-      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${ratingActive === true ? styles.active : styles.inactive}`} onClick={setSortByRating} children="RATING" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${activeSort === 'release' ? styles.active : styles.inactive}`} onClick={dispatchSetSortByReleaseDate} children="RELEASE DATE" />
+      <Button className={`cx(globalStyles['btn-sm'], globalStyles['ml-1']) ${activeSort === 'rating' ? styles.active : styles.inactive}`} onClick={dispatchSetSortByRating} children="RATING" />
     </div>
   </div>
 );
 SortByCategory.propTypes = {
-  releaseActive: PropTypes.bool.isRequired,
-  ratingActive: PropTypes.bool.isRequired,
+  activeSort: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
-  setSortByRating: PropTypes.func.isRequired,
-  setSortByReleaseDate: PropTypes.func.isRequired,
+  dispatchSetSortByRating: PropTypes.func.isRequired,
+  dispatchSetSortByReleaseDate: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ({
-  setSortByRating: () => {
+  dispatchSetSortByRating: () => {
     dispatch(setSortByRating());
   },
-  setSortByReleaseDate: () => {
+  dispatchSetSortByReleaseDate: () => {
     dispatch(setSortByReleaseDate());
   },
 });

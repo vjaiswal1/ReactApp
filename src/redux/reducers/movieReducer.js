@@ -6,10 +6,7 @@ import {
 
 function movieReducer(state = {
   inputs: '',
-  titleActive: true,
-  genresActive: false,
-  releaseActive: false,
-  ratingActive: true,
+
 }, action) {
   switch (action.type) {
     case REQUEST_API_DATA:

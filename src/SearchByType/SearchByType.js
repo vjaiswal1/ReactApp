@@ -7,17 +7,16 @@ import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 import styles from './SearchByType.css';
 
 const SearchByType = ({
-  titleActive, genresActive, dispatchSetSearchByTitle, dispatchSetSearchByGenre,
+  activeSearch, dispatchSetSearchByTitle, dispatchSetSearchByGenre,
 }) => (
   <div className={globalStyles['btn-group']} role="group" aria-label="Basic example">
         SEARCH BY
-    <Button className={`${titleActive === true ? styles.active : styles.inactive}`} onClick={dispatchSetSearchByTitle} children="Title" />
-    <Button className={`${genresActive === true ? styles.active : styles.inactive}`} onClick={dispatchSetSearchByGenre} children="Gengre" />
+    <Button className={`${activeSearch === 'title' ? styles.active : styles.inactive}`} onClick={dispatchSetSearchByTitle} children="Title" />
+    <Button className={`${activeSearch === 'genre' ? styles.active : styles.inactive}`} onClick={dispatchSetSearchByGenre} children="Gengre" />
   </div>
 );
 SearchByType.propTypes = {
-  titleActive: PropTypes.bool.isRequired,
-  genresActive: PropTypes.bool.isRequired,
+  activeSearch: PropTypes.string.isRequired,
   dispatchSetSearchByTitle: PropTypes.func.isRequired,
   dispatchSetSearchByGenre: PropTypes.func.isRequired,
 };
