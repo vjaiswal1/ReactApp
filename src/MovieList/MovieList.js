@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import MoviesList from "src/MoviesList";
-import Search from "src/Search";
-import SearchByType from "src/SearchByType";
-import SortByCategory from "src/SortByCategory";
-import Header from "src/Header";
-import Footer from "src/Footer";
+import React, { Component } from 'react';
+import List from 'src/List';
+import Search from 'src/Search';
+import SearchByType from 'src/SearchByType';
+import SortByCategory from 'src/SortByCategory';
+import Header from 'src/Header';
+import Footer from 'src/Footer';
 import cx from 'classnames';
 import globalStyles from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import styles from "./MainContainer.css";
+import styles from './MovieList.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   requestApiData,
   clickStoreData,
-} from "./MainContainerActions";
+} from './MovieListActions';
 
-class MainContainer extends Component {
+class MovieList extends Component {
   constructor(props) {
     super(props);
   }
 
   filterMovies = (searchText, activeSearch, allMovies) => {
     const currentMovieList = allMovies;
-    let filteredItem = searchText || "";
+    let filteredItem = searchText || '';
     let filteredMovieList = [];
     if (activeSearch === 'title') {
       filteredMovieList = currentMovieList.filter(movie => {
@@ -64,14 +64,14 @@ class MainContainer extends Component {
     }
     return filteredAndSortedData;
   }
-
+  
   render() {
-    const { MainContainerReducer, SearchReducer, SearchByTypeReducer, SortByCategoryReducer, match } = this.props;
+    const { MovieListReducer, SearchReducer, SearchByTypeReducer, SortByCategoryReducer } = this.props;
     const activeSort = SortByCategoryReducer ? SortByCategoryReducer.activeSort : null;
     const activeSearch = SearchByTypeReducer ? SearchByTypeReducer.activeSearch : null;
-    const searchText  = SearchReducer && SearchReducer.inputs ? SearchReducer.inputs : "";
-    const MainContainerReducerResponse = MainContainerReducer ? MainContainerReducer.response : [];
-    let allMoviesdata = MainContainerReducerResponse ? MainContainerReducerResponse.data : [];
+    const searchText  = SearchReducer && SearchReducer.inputs ? SearchReducer.inputs : '';
+    const MovieListReducerResponse = MovieListReducer ? MovieListReducer.response : [];
+    let allMoviesdata = MovieListReducerResponse ? MovieListReducerResponse.data : [];
     const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, activeSearch, activeSort);
     const data = filteredAndSortedData || [];
     return (
@@ -84,7 +84,7 @@ class MainContainer extends Component {
           <SearchByType activeSearch={activeSearch} />
         </div>
         <SortByCategory count={data.length} activeSort={activeSort} />
-        <MoviesList data={data} />
+        <List data={data} />
         <Footer />
       </div>
     );
@@ -92,7 +92,7 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  MainContainerReducer: state.MainContainerReducer,
+  MovieListReducer: state.MovieListReducer,
   SearchReducer: state.SearchReducer,
   SearchByTypeReducer: state.SearchByTypeReducer,
   SortByCategoryReducer: state.SortByCategoryReducer,
@@ -108,4 +108,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MainContainer);
+)(MovieList);

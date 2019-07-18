@@ -6,7 +6,7 @@ import {
   compose,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import MainContainerReducer from '../MainContainer/MainContainerReducer';
+import MovieListReducer from '../MovieList/MovieListReducer';
 import SearchReducer from '../Search/SearchReducer';
 import SearchByTypeReducer from '../SearchByType/SearchByTypeReducer';
 import SortByCategoryReducer from '../SortByCategory/SortByCategoryReducer';
@@ -14,7 +14,7 @@ import MovieDetailedReducer from '../MovieDetailed/MovieDetailedReducer';
 import mySaga from './saga';
 
 const allReducers = combineReducers({
-  MainContainerReducer,
+  MovieListReducer,
   SearchReducer,
   SearchByTypeReducer,
   SortByCategoryReducer,

@@ -2,9 +2,9 @@ import {
   RECEIVE_API_DATA,
   CLICK_REQUEST_DATA,
   REQUEST_API_DATA,
-} from './MainContainerActions';
+} from './MovieListActions';
 
-function MainContainerReducer(state = {
+function MovieListReducer(state = {
   inputs: '',
 
 }, action) {
@@ -28,5 +28,4 @@ function MainContainerReducer(state = {
       return state;
   }
 }
-export default MainContainerReducer;
-
+export default MovieListReducer;

@@ -9,7 +9,6 @@ function MovieDetailedReducer(state = {
         ...state,
         singleMovieData: action.singleMovieData,
       };
-
     default:
       return state;
   }
