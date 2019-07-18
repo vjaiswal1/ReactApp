@@ -8,7 +8,7 @@ import {
   receiveApiData,
   CLICK_REQUEST_DATA,
   clickStoreData,
-} from '../actions';
+} from '../../MainContainer/MainContainerActions';
 
 
 const getPage = state => state.nextPage;

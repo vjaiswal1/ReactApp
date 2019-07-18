@@ -2,9 +2,9 @@ import {
   RECEIVE_API_DATA,
   CLICK_REQUEST_DATA,
   REQUEST_API_DATA,
-} from '../actions';
+} from './MainContainerActions';
 
-function movieReducer(state = {
+function MainContainerReducer(state = {
   inputs: '',
 
 }, action) {
@@ -28,4 +28,5 @@ function movieReducer(state = {
       return state;
   }
 }
-export default movieReducer;
+export default MainContainerReducer;
+
