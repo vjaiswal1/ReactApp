@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { detailedMovieApi } from '../api/detailedMovieApi';
-import MovieDetailed from './MovieDetailed';
-import { updateSingleMovieData } from './MovieDetailedActions';
+import { detailedMovieApi } from 'src/api/detailedMovieApi';
+import MovieDetailed from 'src/MovieDetailed/MovieDetailed';
+import { updateSingleMovieData } from 'src/MovieDetailed/MovieDetailedActions';
 
-class MovieComponent extends Component {
+class Movie extends Component {
   componentDidMount() {
     const { dispatchUpdateSingleMovieData, match } = this.props;
     const id = match && match.params ? match.params.id : 0;
@@ -20,7 +20,7 @@ class MovieComponent extends Component {
   }
 }
 
-MovieComponent.propTypes = {
+Movie.propTypes = {
   dispatchUpdateSingleMovieData: PropTypes.func.isRequired,
   singleMovieData: PropTypes.object,
   match: PropTypes.object,
@@ -39,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MovieComponent);
+)(Movie);

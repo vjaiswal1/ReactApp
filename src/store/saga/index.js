@@ -35,8 +35,8 @@ function* clickUpdateData(action) {
   }
 }
 
-function* mySaga() {
+function* sagaOutput() {
   yield all([RECEIVE_API_DATA, fetchProducts()]);
   yield takeEvery(CLICK_REQUEST_DATA, clickUpdateData);
 }
-export default mySaga;
+export default sagaOutput;

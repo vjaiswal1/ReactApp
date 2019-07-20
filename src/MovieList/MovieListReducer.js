@@ -12,12 +12,12 @@ function MovieListReducer(state = {
     case REQUEST_API_DATA:
       return {
         ...state,
-        response: action.response,
+        requestMoviesResponse: action.requestMoviesResponse,
       };
     case RECEIVE_API_DATA:
       return {
         ...state,
-        response: action.response,
+        receiveMoviesResponse: action.receiveMoviesResponse,
       };
     case CLICK_REQUEST_DATA:
       return {

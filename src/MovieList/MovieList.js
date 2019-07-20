@@ -70,7 +70,7 @@ class MovieList extends Component {
     const activeSort = SortByCategoryReducer ? SortByCategoryReducer.activeSort : null;
     const activeSearch = SearchByTypeReducer ? SearchByTypeReducer.activeSearch : null;
     const searchText  = SearchReducer && SearchReducer.inputs ? SearchReducer.inputs : '';
-    const MovieListReducerResponse = MovieListReducer ? MovieListReducer.response : [];
+    const MovieListReducerResponse = MovieListReducer ? MovieListReducer.receiveMoviesResponse : [];
     let allMoviesdata = MovieListReducerResponse ? MovieListReducerResponse.data : [];
     const filteredAndSortedData = this.getFilteredAndSortedData(allMoviesdata, searchText, activeSearch, activeSort);
     const data = filteredAndSortedData || [];

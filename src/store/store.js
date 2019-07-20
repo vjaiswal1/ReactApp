@@ -11,7 +11,7 @@ import SearchReducer from '../Search/SearchReducer';
 import SearchByTypeReducer from '../SearchByType/SearchByTypeReducer';
 import SortByCategoryReducer from '../SortByCategory/SortByCategoryReducer';
 import MovieDetailedReducer from '../MovieDetailed/MovieDetailedReducer';
-import mySaga from './saga';
+import sagaOutput from './saga';
 
 const allReducers = combineReducers({
   MovieListReducer,
@@ -29,5 +29,5 @@ const store = createStore(
       && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(sagaOutput);
 export default store;
