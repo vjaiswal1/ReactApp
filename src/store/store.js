@@ -6,11 +6,11 @@ import {
   compose,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import MovieListReducer from '../MovieList/MovieListReducer';
-import SearchReducer from '../Search/SearchReducer';
-import SearchByTypeReducer from '../SearchByType/SearchByTypeReducer';
-import SortByCategoryReducer from '../SortByCategory/SortByCategoryReducer';
-import MovieDetailedReducer from '../MovieDetailed/MovieDetailedReducer';
+import MovieListReducer from 'src/MovieList/MovieListReducer';
+import SearchReducer from 'src/Search/SearchReducer';
+import SearchByTypeReducer from 'src/SearchByType/SearchByTypeReducer';
+import SortByCategoryReducer from 'src/SortByCategory/SortByCategoryReducer';
+import MovieDetailedReducer from 'src/MovieDetailed/MovieDetailedReducer';
 import sagaOutput from './saga';
 
 const allReducers = combineReducers({
