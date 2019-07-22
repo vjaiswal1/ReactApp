@@ -1,4 +1,6 @@
 
-export const UPDATE_SINGLEMOVIE_DATA = 'UPDATE_SINGLEMOVIE_DATA';
-
-export const updateSingleMovieData = singleMovieData => ({ type: UPDATE_SINGLEMOVIE_DATA, singleMovieData });
+export const SINGLEMOVIE_FETCH_REQUESTED = 'SINGLEMOVIE_FETCH_REQUESTED';
+export const SINGLEMOVIE_FETCH_SUCCEEDED = 'SINGLEMOVIE_FETCH_SUCCEEDED';
+export const requestSingleMovieData = movieId => ({ type: SINGLEMOVIE_FETCH_REQUESTED, movieId });
+export const singleMovieFetchSucceeded = singleMovieData => ({
+  type: SINGLEMOVIE_FETCH_SUCCEEDED, singleMovieData });

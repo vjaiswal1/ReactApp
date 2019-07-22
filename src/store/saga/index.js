@@ -1,15 +1,20 @@
 import {
-  call, put, takeEvery, select, all,
-} from 'redux-saga/effects';
-import { moviesData } from 'src/api';
-import { detailedMovieApi } from 'src/api/detailedMovieApi';
+  call,
+  put,
+  select,
+  all,
+  takeLatest,
+} from "redux-saga/effects";
+import { moviesData } from "src/api";
+import { fetchSingleMovieData } from "src/api/detailedMovieApi";
 import {
   RECEIVE_API_DATA,
   receiveApiData,
-  CLICK_REQUEST_DATA,
-  clickStoreData,
-} from 'src/MovieList/MovieListActions';
-
+} from "src/MovieList/MovieListActions";
+import {
+  SINGLEMOVIE_FETCH_REQUESTED,
+  singleMovieFetchSucceeded,
+} from "src/MovieDetailed/MovieDetailedActions";
 
 const getPage = state => state.nextPage;
 function* fetchProducts() {
@@ -18,25 +23,14 @@ function* fetchProducts() {
   yield put(receiveApiData(dataDetail));
 }
 
-function* clickUpdateData(action) {
-  try {
-    while (true) {
-      const page = yield select(getPage);
-      const dataDetail = yield call(
-        detailedMovieApi,
-        action.params,
-        action.data,
-        page,
-      );
-      yield put(clickStoreData(dataDetail));
-    }
-  } finally {
-    if (yield cancelled()) yield put(actions.requestFailure('Sync cancelled!'));
-  }
+function* onMovieClicked(action) {
+  const page = yield select(getPage);
+  const dataDetail = yield call(fetchSingleMovieData, action.movieId, page);
+  yield put(singleMovieFetchSucceeded(dataDetail));
 }
 
 function* sagaOutput() {
   yield all([RECEIVE_API_DATA, fetchProducts()]);
-  yield takeEvery(CLICK_REQUEST_DATA, clickUpdateData);
+  yield takeLatest(SINGLEMOVIE_FETCH_REQUESTED, onMovieClicked);
 }
 export default sagaOutput;

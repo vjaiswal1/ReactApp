@@ -7,8 +7,12 @@ import styles from './MovieDetailed.css';
 const MovieDetailed = ({ singleMovieData }) => {
   const singleMovieDataObject = singleMovieData || {};
   return (
-    <div className={globalStyles.media}>
-      <img className={globalStyles['mr-3']} src={singleMovieDataObject.poster_path} alt={singleMovieDataObject.title} />
+    <div className={styles.media}>
+      <img
+        className={globalStyles['mr-3']}
+        src={singleMovieDataObject.poster_path}
+        alt={singleMovieDataObject.title}
+      />
       <div className={globalStyles['media-body']}>
         <div className={globalStyles.clearfix}>
           <h2 className={cx(globalStyles['float-left'], globalStyles['mt-0'])}>{singleMovieDataObject.title}</h2>

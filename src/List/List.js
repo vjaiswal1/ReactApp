@@ -12,17 +12,26 @@ class List extends Component {
 
   render() {
     const { data } = this.props;
-    const MoviesCardList = () => data.map(movie => (
-      <div className={cx(globalStyles.card, globalStyles['col-md-3'], globalStyles['mx-3'], globalStyles['my-3'], globalStyles['px-0'])} key={movie.id}>
-        <Link to={`/film/${movie.id}`}>
-          <img className={globalStyles['card-img-top']} src={movie.poster_path} alt={movie.title} />
-        </Link>
-        <MovieCard title={movie.title} releaseDate={this.getYear(movie.release_date)} genres={movie.genres} />
-      </div>
-    ));
     return (
       <div className={cx(globalStyles.row, globalStyles['justify-content-center'], styles.mainContent)}>
-        <MoviesCardList />
+        {
+        data.map(movie => (
+          <div className={cx(globalStyles.card, globalStyles['col-md-3'], globalStyles['mx-3'], globalStyles['my-3'], globalStyles['px-0'])} key={movie.id}>
+            <Link to={`/film/${movie.id}`}>
+              <img
+                className={globalStyles['card-img-top']}
+                src={movie.poster_path}
+                alt={movie.title}
+              />
+            </Link>
+            <MovieCard
+              title={movie.title}
+              releaseDate={this.getYear(movie.release_date)}
+              genres={movie.genres}
+            />
+          </div>
+        ))
+        }
       </div>
     );
   }

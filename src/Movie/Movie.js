@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { detailedMovieApi } from 'src/api/detailedMovieApi';
 import MovieDetailed from 'src/MovieDetailed/MovieDetailed';
-import { updateSingleMovieData } from 'src/MovieDetailed/MovieDetailedActions';
+import { requestSingleMovieData } from 'src/MovieDetailed/MovieDetailedActions';
 
 class Movie extends Component {
   componentDidMount() {
-    const { dispatchUpdateSingleMovieData, match } = this.props;
+    const { match } = this.props;
     const id = match && match.params ? match.params.id : 0;
-    detailedMovieApi(id).then((response) => {
-      dispatchUpdateSingleMovieData(response);
-    });
+    this.props.requestSingleMovieData(id);
   }
 
   render() {
     const { singleMovieData } = this.props;
-    return (<MovieDetailed singleMovieData={singleMovieData} />);
+    return <MovieDetailed singleMovieData={singleMovieData} />;
   }
 }
 
 Movie.propTypes = {
-  dispatchUpdateSingleMovieData: PropTypes.func.isRequired,
   singleMovieData: PropTypes.object,
   match: PropTypes.object,
+  requestSingleMovieData: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -31,8 +28,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchUpdateSingleMovieData: (singleMovieData) => {
-    dispatch(updateSingleMovieData(singleMovieData));
+  requestSingleMovieData: (movieId) => {
+    dispatch(requestSingleMovieData(movieId));
   },
 });
 
