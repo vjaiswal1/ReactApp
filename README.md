@@ -1,2 +1,2 @@
 # React
-React + Webpack + Babel
+React + Webpack + Babel + eslint

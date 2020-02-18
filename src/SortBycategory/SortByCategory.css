@@ -1,0 +1,19 @@
+.active {
+    background: #F65261;
+    color: #fff;
+    border-color: #F65261;
+    margin: 0 1px;
+}
+
+.inactive {
+    background: lightgrey;
+    color: #fff;
+    border-color: lightgrey;
+    margin: 0 1px;
+}
+
+.moviesubheadingSection {
+    background: #555;
+    color: #fff;
+    padding: 1rem;
+}
