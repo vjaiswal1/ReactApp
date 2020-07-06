@@ -5,18 +5,20 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack-dev-server --mode development --open --hot",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "start:prod": "NODE_ENV=production node build/server.js",
+    "eb:prod": "npm run build && npm run start:prod"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NJaryal/ReactApp.git"
+        "url": "git+https://github.com/vjaiswal1/ReactApp.git"
     },
-    "author": "Nitin Jaryal",
+    "author": " VIKAS JAISWAL",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/NJaryal/ReactApp/issues"
+        "url": "https://github.com/vjaiswal1/ReactApp.git/issues"
     },
-    "homepage": "https://github.com/NJaryal/ReactApp#readme",
+    "homepage": "https://github.com/vjaiswal1/ReactApp.git#readme",
     "dependencies": {
         "babel-polyfill": "^6.26.0",
         "bootstrap": "^4.5.0",
